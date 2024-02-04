@@ -19,9 +19,18 @@ public class VoiceManager : NetworkBehaviour
     public float lastSendTime = 0;
     public int lastSamplePosition = 0;
 
-
+    public bool ssss;
+    private void FixedUpdate()
+    {
+        ssss = isOwned;
+    }
     private AudioClip remoteVoiceClip;
 
+
+    // void sss(){
+    //     NetworkIdentity sss;
+    //     sss.AssignClientAuthority()
+    // }
     void Awake()
     {
         remoteVoiceClip = AudioClip.Create("RemoteVoice", sampleRate * 2, 1, sampleRate, false); // Set the stream argument to false
@@ -41,7 +50,20 @@ public class VoiceManager : NetworkBehaviour
             selectedMic = selectedMic == "" ? Microphone.devices[0] : selectedMic;
             StartMicrophone();
         }
+
+        // CmdAssignAuthority();
+
     }
+
+
+    [Command(channel = 2)]
+    void CmdAssignAuthority()
+    {
+        // Assign authority to the local player
+        gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+    }
+
+
 
     bool IsSpeaking(float[] samples, float threshold = 0.01f)
     {
@@ -112,15 +134,14 @@ public class VoiceManager : NetworkBehaviour
         }
 
         int sampleSize = microphonePosition - lastSamplePosition;
-            Debug.Log((sampleSize));
 
         if (sampleSize > 0)
         {
             float[] samples = new float[sampleSize * microphoneSource.clip.channels];
             microphoneSource.clip.GetData(samples, lastSamplePosition);
-            Debug.Log((IsSpeaking(samples)));
             if (IsSpeaking(samples))
             {
+                Debug.Log(samples.Length);
                 voiceIcon.SetActive(true);
                 CmdSendData(samples);
                 lastSendTime = Time.time;
@@ -135,6 +156,7 @@ public class VoiceManager : NetworkBehaviour
         }
     }
 
+
     [Command(channel = 2)]
     void CmdSendData(float[] samples)
     {
@@ -145,23 +167,11 @@ public class VoiceManager : NetworkBehaviour
     void RpcPlaySound(float[] samples)
     {
         if (isOwned) return; // Don't play own voice back
-        Debug.Log("Calllll");
+        Debug.Log("Calllll      " + samples.Length);
         AudioClip clip = AudioClip.Create("RemoteVoice", samples.Length, 1, sampleRate, false);
         clip.SetData(samples, 0);
         audioSource.clip = clip;
         audioSource.Play();
     }
 
-
-    public void ChangeMicrophone(string newMic)
-    {
-        if (!Microphone.IsRecording(selectedMic))
-        {
-            return;
-        }
-
-        Microphone.End(selectedMic); // End the current microphone session
-        selectedMic = newMic;
-        StartMicrophone();
-    }
 }

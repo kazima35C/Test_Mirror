@@ -510,7 +510,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 45.578335
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -611,6 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346799731}
   - component: {fileID: 1346799730}
+  - component: {fileID: 1346799732}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -684,6 +685,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1346799732
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346799726}
+  m_Enabled: 1
 --- !u!1 &1352350029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,7 +1115,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 162.26926
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1556,7 +1565,7 @@ GameObject:
   - component: {fileID: 1783142704}
   - component: {fileID: 1783142706}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: 00000000000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1656,7 +1665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267.5, y: -437.5}
+  m_AnchoredPosition: {x: 0, y: -56.68}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820865870
@@ -1941,9 +1950,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1346799731}
   - {fileID: 1886246550}
-  - {fileID: 1607538195}
   - {fileID: 473997961}
   - {fileID: 1397990096}
+  - {fileID: 1607538195}
   - {fileID: 1783142705}
   - {fileID: 1195894496}
   - {fileID: 1511072499}

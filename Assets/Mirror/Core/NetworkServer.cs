@@ -334,11 +334,12 @@ namespace Mirror
             // -> so if this connection's controller has a different netId then
             //    only allow the command if clientAuthorityOwner
             bool requiresAuthority = RemoteProcedureCalls.CommandRequiresAuthority(msg.functionHash);
-            if (requiresAuthority && identity.connectionToClient != conn)
-            {
-                Debug.LogWarning($"Command for object without authority [netId={msg.netId}]");
-                return;
-            }
+          
+            // if (requiresAuthority && identity.connectionToClient != conn)
+            // {
+            //     Debug.LogWarning($"Command for object without authority [netId={msg.netId}]");
+            //     return;
+            // }
 
             // Debug.Log($"OnCommandMessage for netId:{msg.netId} conn:{conn}");
 

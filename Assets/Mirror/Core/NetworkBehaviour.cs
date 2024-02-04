@@ -355,11 +355,13 @@ namespace Mirror
 
             // local players can always send commands, regardless of authority,
             // other objects must have authority.
-            if (!(!requiresAuthority || isLocalPlayer || isOwned))
-            {
-                Debug.LogWarning($"Command {functionFullName} called on {name} without authority.", gameObject);
-                return;
-            }
+            
+            // if (!(!requiresAuthority || isLocalPlayer || isOwned))
+            // {
+            //     Debug.Log("requiresAuthority:: "+requiresAuthority+"    isLocalPlayer:"+isLocalPlayer+" isOwned:"+isOwned);
+            //     Debug.LogWarning($"Command {functionFullName} called on {name} without authority.", gameObject);
+            //     return;
+            // }
 
             // IMPORTANT: can't use .connectionToServer here because calling
             // a command on other objects is allowed if requireAuthority is
